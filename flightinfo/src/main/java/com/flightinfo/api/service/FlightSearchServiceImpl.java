@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -28,21 +29,15 @@ public class FlightSearchServiceImpl implements FlightSearchService {
 
         List<FlightInfoDTO> dtolist = list.stream().map(FlightMapper::mapToDto)
                 .collect(Collectors.toList());
-        logger.info("In Service origin.isEmpty() ==" + origin.isEmpty() );
-
-        if(origin.isEmpty() || destination.isEmpty())
-            throw new FlightLocationNotFound("Requested Locations Flights are not available.. Origin or destination cannot ne empty");
+        logger.info("In Service origin.isEmpty() ==" + origin.isEmpty());
 
         List<FlightInfoDTO> result = dtolist.stream().filter(p -> p.getOrigin().equals(origin)).filter(p -> p.getDestination().equals(destination)).collect(Collectors.toList());
         logger.info("In Service + source & destination list" + result.size());
 
         if (result.isEmpty())
-     throw new FlightLocationNotFound("Requested Locations Flights are not available.. Please check others");
+            throw new FlightLocationNotFound("Requested Locations Flights are not available.. Please check others");
 
-        /*if (result.size() <= 0) {
-            throw new DestNotFoundException(" Requested Location Flights not are not available: " + origin + "to" + destination);
 
-        }*/
         List<FlightInfoDTO> result1 = result.stream().filter(n -> n.getFlightNumber().length() > 0)
                 .map(k -> {
                     k.setDuration(FlightDurationUtil.getHours(k.getArrivalTime(), k.getDepartureTime()));
