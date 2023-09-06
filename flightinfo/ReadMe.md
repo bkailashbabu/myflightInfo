@@ -3,11 +3,14 @@ Implemented
 1. Spring Security
   Username = admin ; password = admin123
 
-2. Swagger
-  http://localhost:8080/swagger-ui.html
-
+2. Swagger:
+ http://localhost:8080/swagger-ui.html#
+Actuator:
+  http://localhost:8080/actuator
 3. H2 DB
  http://localhost:8080/h2-console/
+
+
 
 4. Spring web
 5. spring data jpa
