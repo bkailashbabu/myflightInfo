@@ -28,7 +28,7 @@ public class FlightSearchController {
         return list1;
     }
 
-    //flight details - origin and destination based on sort
+    //flight details - origin and destination sort based
     @GetMapping("/v1/flights/{origin}/{destination}/sortby")
     public List<FlightInfoDTO> getDetailsFromOriginToDestinationBySort(@PathVariable("origin") String origin, @PathVariable("destination") String destination, @RequestParam String value) {
         List<FlightInfoDTO> result = flightSearchService.getDetailsFromOriginToDestinationBySort(origin, destination, value);

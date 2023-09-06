@@ -14,7 +14,6 @@ public class FlightDurationUtil {
             long diff = d1.getTime() - d2.getTime();
             long diffInMinutes = diff / (60 * 1000) % 60;
             long diffInHours = diff / (60 * 60 * 1000);
-            // logger.info("duration format:"+diffInHours+":"+diffInMinutes);
             return diffInHours + ":" + diffInMinutes;
         } catch (ParseException e) {
             e.printStackTrace();
